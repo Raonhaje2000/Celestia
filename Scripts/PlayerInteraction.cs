@@ -5,71 +5,71 @@ using UnityEditor;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    GameObject interactionUICanvas;                    // »óÈ£ÀÛ¿ë Ç¥½Ã UI Äµ¹ö½º
-    GameObject interactionUIObject;                    // »óÈ£ÀÛ¿ë Ç¥½Ã UI ¿ÀºêÁ§Æ®
-    InteractionUI interactionUI;                       // »óÈ£ÀÛ¿ë Ç¥½Ã UI ÄÄÆ÷³ÍÆ®
+    GameObject interactionUICanvas;                    // ìƒí˜¸ì‘ìš© í‘œì‹œ UI ìº”ë²„ìŠ¤
+    GameObject interactionUIObject;                    // ìƒí˜¸ì‘ìš© í‘œì‹œ UI ì˜¤ë¸Œì íŠ¸
+    InteractionUI interactionUI;                       // ìƒí˜¸ì‘ìš© í‘œì‹œ UI ì»´í¬ë„ŒíŠ¸
 
-    Sprite interactionNpc;                             // NPC »óÈ£ÀÛ¿ë ½ºÇÁ¶óÀÌÆ®
-    string interactionNpcText;                         // NPC »óÈ£ÀÛ¿ë ÅØ½ºÆ®
+    Sprite interactionNpc;                             // NPC ìƒí˜¸ì‘ìš© ìŠ¤í”„ë¼ì´íŠ¸
+    string interactionNpcText;                         // NPC ìƒí˜¸ì‘ìš© í…ìŠ¤íŠ¸
 
-    Sprite interactionObject;                          // ¿ÀºêÁ§Æ® »óÈ£ÀÛ¿ë ½ºÇÁ¶óÀÌÆ®
-    string interactionObjectText;                      // ¿ÀºêÁ§Æ® »óÈ£ÀÛ¿ë ÅØ½ºÆ®
+    Sprite interactionObject;                          // ì˜¤ë¸Œì íŠ¸ ìƒí˜¸ì‘ìš© ìŠ¤í”„ë¼ì´íŠ¸
+    string interactionObjectText;                      // ì˜¤ë¸Œì íŠ¸ ìƒí˜¸ì‘ìš© í…ìŠ¤íŠ¸
 
-    Sprite interactionPortal;                          // ¿ÀºêÁ§Æ® »óÈ£ÀÛ¿ë ½ºÇÁ¶óÀÌÆ®
+    Sprite interactionPortal;                          // ì˜¤ë¸Œì íŠ¸ ìƒí˜¸ì‘ìš© ìŠ¤í”„ë¼ì´íŠ¸
 
-    GameObject interactionTargetMark;                  // »óÈ£ÀÛ¿ë Å¸°Ù ¸¶Å©
+    GameObject interactionTargetMark;                  // ìƒí˜¸ì‘ìš© íƒ€ê²Ÿ ë§ˆí¬
 
     [Min(0)]
-    [SerializeField] float interactionRange;           // »óÈ£ÀÛ¿ë ¹üÀ§
+    [SerializeField] float interactionRange;           // ìƒí˜¸ì‘ìš© ë²”ìœ„
 
-    LayerMask interactionMask;                         // »óÈ£ÀÛ¿ë ·¹ÀÌ¾î ¸¶½ºÅ©
+    LayerMask interactionMask;                         // ìƒí˜¸ì‘ìš© ë ˆì´ì–´ ë§ˆìŠ¤í¬
 
-    GameObject targetObejct;                           // »óÈ£ÀÛ¿ëÇÒ Å¸°Ù ¿ÀºêÁ§Æ®
+    GameObject targetObejct;                           // ìƒí˜¸ì‘ìš©í•  íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸
 
-    [SerializeField] KeyCode interactionKey;           // »óÈ£ÀÛ¿ë Å°
+    [SerializeField] KeyCode interactionKey;           // ìƒí˜¸ì‘ìš© í‚¤
 
-    GameObject questDetailUICanvas;                    // NPC Äù½ºÆ® UI Äµ¹ö½º
-    GameObject questDetailObject;                      // NPC Äù½ºÆ® UI ¿ÀºêÁ§Æ®
-    QuestDetailUINpcInteraction qusetNpcUI;            // NPC Äù½ºÆ® UI ÄÄÆ÷³ÍÆ®
+    GameObject questDetailUICanvas;                    // NPC í€˜ìŠ¤íŠ¸ UI ìº”ë²„ìŠ¤
+    GameObject questDetailObject;                      // NPC í€˜ìŠ¤íŠ¸ UI ì˜¤ë¸Œì íŠ¸
+    QuestDetailUINpcInteraction qusetNpcUI;            // NPC í€˜ìŠ¤íŠ¸ UI ì»´í¬ë„ŒíŠ¸
 
     GameObject systemUIObject;
 
     private void Awake()
     {
-        LoadResources(); // °ü·Ã ¿ÀºêÁ§Æ® ºÒ·¯¿À±â
+        LoadResources(); // ê´€ë ¨ ì˜¤ë¸Œì íŠ¸ ë¶ˆëŸ¬ì˜¤ê¸°
     }
 
     void Start()
     {
-        Initialize(); // ÃÊ±âÈ­
+        Initialize(); // ì´ˆê¸°í™”
     }
 
     void Update()
     {
-        // »óÈ£ÀÛ¿ëÇÒ Å¸°Ù ¿ÀºêÁ§Æ® ¾÷µ¥ÀÌÆ®
+        // ìƒí˜¸ì‘ìš©í•  íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ ì—…ë°ì´íŠ¸
         UpdateTargetObejct();
 
         if (targetObejct != null)
         {
-            // Å¸°Ù ¿ÀºêÁ§Æ®°¡ ÀÖ´Â °æ¿ì
+            // íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ê°€ ìˆëŠ” ê²½ìš°
 
-            // »óÈ£ÀÛ¿ë UI¿Í »óÈ£ÀÛ¿ë Å¸°Ù ¸¶Å© ¶ç¿ì±â
+            // ìƒí˜¸ì‘ìš© UIì™€ ìƒí˜¸ì‘ìš© íƒ€ê²Ÿ ë§ˆí¬ ë„ìš°ê¸°
             //SetInteractionUIAndTargetMark();
 
             if (!GameManager.instance.IsPlayerInteractionWithNpc)
             {
-                // Å¸°Ù ¿ÀºêÁ§Æ®°¡ ÁöÁ¤µÈ »óÅÂ¿¡¼­ »óÈ£ÀÛ¿ë Å°³ª ÇØ´ç ¿ÀºêÁ§Æ®¸¦ ¸¶¿ì½º Å¬¸¯ÇßÀ» °æ¿ì
+                // íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ê°€ ì§€ì •ëœ ìƒíƒœì—ì„œ ìƒí˜¸ì‘ìš© í‚¤ë‚˜ í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ë¥¼ ë§ˆìš°ìŠ¤ í´ë¦­í–ˆì„ ê²½ìš°
                 if (Input.GetKeyDown(interactionKey) || (Input.GetMouseButtonDown(0) && CheckMouseClickTargetObject()))                   
                 {
-                    // »óÈ£ÀÛ¿ë µ¿ÀÛ Ã³¸®
+                    // ìƒí˜¸ì‘ìš© ë™ì‘ ì²˜ë¦¬
                     GetInteraction();
                 }
             }
         }
         else
         {
-            // Å¸°Ù ¿ÀºêÁ§Æ®°¡ ¾ø´Â °æ¿ì
-            // »óÈ£ÀÛ¿ë UI¿Í »óÈ£ÀÛ¿ë Å¸°Ù ¸¶Å© ºñÈ°¼ºÈ­
+            // íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ê°€ ì—†ëŠ” ê²½ìš°
+            // ìƒí˜¸ì‘ìš© UIì™€ ìƒí˜¸ì‘ìš© íƒ€ê²Ÿ ë§ˆí¬ ë¹„í™œì„±í™”
             //SetInteractionUIAndTargetMarkActive(false);
         }
     }
@@ -78,29 +78,29 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (!GameManager.instance.IsPlayerInteractionWithNpc)
         {
-            // ÇÃ·¹ÀÌ¾î°¡ NPC¿Í »óÈ£ÀÛ¿ëÇÏ°í ÀÖÁö ¾ÊÀº °æ¿ì
+            // í”Œë ˆì´ì–´ê°€ NPCì™€ ìƒí˜¸ì‘ìš©í•˜ê³  ìˆì§€ ì•Šì€ ê²½ìš°
 
             if (targetObejct != null)
             {
-                // »óÈ£ÀÛ¿ë UI¿Í »óÈ£ÀÛ¿ë Å¸°Ù ¸¶Å© ¶ç¿ì±â
+                // ìƒí˜¸ì‘ìš© UIì™€ ìƒí˜¸ì‘ìš© íƒ€ê²Ÿ ë§ˆí¬ ë„ìš°ê¸°
                 SetInteractionUIAndTargetMark();
             }
             else
             {
-                // Å¸°Ù ¿ÀºêÁ§Æ®°¡ ¾ø´Â °æ¿ì
-                // »óÈ£ÀÛ¿ë UI¿Í »óÈ£ÀÛ¿ë Å¸°Ù ¸¶Å© ºñÈ°¼ºÈ­
+                // íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ê°€ ì—†ëŠ” ê²½ìš°
+                // ìƒí˜¸ì‘ìš© UIì™€ ìƒí˜¸ì‘ìš© íƒ€ê²Ÿ ë§ˆí¬ ë¹„í™œì„±í™”
                 SetInteractionUIAndTargetMarkActive(false);
             }
         }
         else
         {
-            // ÇÃ·¹ÀÌ¾î°¡ NPC¿Í »óÈ£ÀÛ¿ëÇÏ°í ÀÖ´Â °æ¿ì
-            // »óÈ£ÀÛ¿ë UI¿Í »óÈ£ÀÛ¿ë Å¸°Ù ¸¶Å© ºñÈ°¼ºÈ­
+            // í”Œë ˆì´ì–´ê°€ NPCì™€ ìƒí˜¸ì‘ìš©í•˜ê³  ìˆëŠ” ê²½ìš°
+            // ìƒí˜¸ì‘ìš© UIì™€ ìƒí˜¸ì‘ìš© íƒ€ê²Ÿ ë§ˆí¬ ë¹„í™œì„±í™”
             SetInteractionUIAndTargetMarkActive(false);
         }
     }
 
-    // °ü·Ã ¸®¼Ò½º ºÒ·¯¿À±â
+    // ê´€ë ¨ ë¦¬ì†ŒìŠ¤ ë¶ˆëŸ¬ì˜¤ê¸°
     void LoadResources()
     {
         interactionUICanvas = Instantiate(Resources.Load<GameObject>("Prefabs/UI/Canvas_InteractionUI"));                               
@@ -120,11 +120,11 @@ public class PlayerInteraction : MonoBehaviour
         systemUIObject = interactionUICanvas.transform.Find("SystemUIObject").gameObject;
     }
 
-    // ÃÊ±âÈ­
+    // ì´ˆê¸°í™”
     void Initialize()
     {
-        interactionNpcText = "´ëÈ­ÇÏ±â";
-        interactionObjectText = "Á¶»çÇÏ±â";
+        interactionNpcText = "ëŒ€í™”í•˜ê¸°";
+        interactionObjectText = "ì¡°ì‚¬í•˜ê¸°";
 
         interactionRange = 5.0f;
 
@@ -140,50 +140,50 @@ public class PlayerInteraction : MonoBehaviour
         systemUIObject.SetActive(false);
     }
 
-    // »óÈ£ÀÛ¿ë µ¿ÀÛ Ã³¸®
+    // ìƒí˜¸ì‘ìš© ë™ì‘ ì²˜ë¦¬
     void GetInteraction()
     {
-        // ÇÃ·¹ÀÌ¾î°¡ ÇØ´ç ¿ÀºêÁ§Æ®¸¦ ¹Ù¶óº¸µµ·Ï È¸Àü
+        // í”Œë ˆì´ì–´ê°€ í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ë¥¼ ë°”ë¼ë³´ë„ë¡ íšŒì „
         //transform.LookAt(new Vector3(targetObejct.transform.position.x, transform.position.y, targetObejct.transform.position.z));     
 
-        // ·¹ÀÌ¾î¿¡ µû¸¥ »óÈ£ÀÛ¿ë µ¿ÀÛ Ã³¸®
+        // ë ˆì´ì–´ì— ë”°ë¥¸ ìƒí˜¸ì‘ìš© ë™ì‘ ì²˜ë¦¬
         if (targetObejct.layer == LayerMask.NameToLayer("NPC"))
         {
-            // Å¸°Ù ¿ÀºêÁ§Æ®ÀÇ ·¹ÀÌ¾î°¡ NPCÀÎ °æ¿ì
-            // NPC¿ÍÀÇ »óÈ£ÀÛ¿ë µ¿ÀÛ Ã³¸®
+            // íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ì˜ ë ˆì´ì–´ê°€ NPCì¸ ê²½ìš°
+            // NPCì™€ì˜ ìƒí˜¸ì‘ìš© ë™ì‘ ì²˜ë¦¬
             targetObejct.GetComponent<Npc>().InteroperateWithPlayer();
         }
         else if (targetObejct.layer == LayerMask.NameToLayer("InteractionObject"))
         {
-            // Å¸°Ù ¿ÀºêÁ§Æ®ÀÇ ·¹ÀÌ¾î°¡ »óÈ£ÀÛ¿ë ¿ÀºêÁ§Æ®ÀÎ °æ¿ì
-            // ¿ÀºêÁ§Æ®¿ÍÀÇ »óÈ£ÀÛ¿ë µ¿ÀÛ Ã³¸®
+            // íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ì˜ ë ˆì´ì–´ê°€ ìƒí˜¸ì‘ìš© ì˜¤ë¸Œì íŠ¸ì¸ ê²½ìš°
+            // ì˜¤ë¸Œì íŠ¸ì™€ì˜ ìƒí˜¸ì‘ìš© ë™ì‘ ì²˜ë¦¬
             targetObejct.GetComponent<InteractionObject>().InteroperateWithPlayer();
         }
         else if (targetObejct.layer == LayerMask.NameToLayer("Portal"))
         {
-            // Å¸°Ù ¿ÀºêÁ§Æ®ÀÇ ·¹ÀÌ¾î°¡ Æ÷Å»ÀÎ °æ¿ì
-            // Æ÷Å»°úÀÇ »óÈ£ÀÛ¿ë µ¿ÀÛ Ã³¸®
+            // íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ì˜ ë ˆì´ì–´ê°€ í¬íƒˆì¸ ê²½ìš°
+            // í¬íƒˆê³¼ì˜ ìƒí˜¸ì‘ìš© ë™ì‘ ì²˜ë¦¬
             targetObejct.GetComponent<Portal>().MoveDestination();
         }
     }
 
-    // »óÈ£ÀÛ¿ëÇÒ Å¸°Ù ¿ÀºêÁ§Æ® ¾÷µ¥ÀÌÆ®
+    // ìƒí˜¸ì‘ìš©í•  íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ ì—…ë°ì´íŠ¸
     void UpdateTargetObejct()
     {
         targetObejct = GetRangeObjectNear();
     }
 
-    // »óÈ£ÀÛ¿ë ¹üÀ§¾È¿¡ ÀÖ´Â ¿ÀºêÁ§Æ®µé ¹İÈ¯
+    // ìƒí˜¸ì‘ìš© ë²”ìœ„ì•ˆì— ìˆëŠ” ì˜¤ë¸Œì íŠ¸ë“¤ ë°˜í™˜
     List<Transform> GetRangeObjects()
     {
-        List<Transform> rangeObjects = new List<Transform>(); // ¹üÀ§ ¾ÈÀÇ »óÈ£ÀÛ¿ë ¿ÀºêÁ§Æ® ¸ñ·Ï
+        List<Transform> rangeObjects = new List<Transform>(); // ë²”ìœ„ ì•ˆì˜ ìƒí˜¸ì‘ìš© ì˜¤ë¸Œì íŠ¸ ëª©ë¡
 
-        // ¹üÀ§ ¾È¿¡ µé¾î¿Â ¿ÀºêÁ§Æ® Áß ¸ó½ºÅÍÀÎ °æ¿ì¸¸ ¹Ş¾Æ¿È
+        // ë²”ìœ„ ì•ˆì— ë“¤ì–´ì˜¨ ì˜¤ë¸Œì íŠ¸ ì¤‘ ìƒí˜¸ì‘ìš© ì˜¤ë¸Œì íŠ¸ì¸ ê²½ìš°ë§Œ ë°›ì•„ì˜´
         Collider[] colliders = Physics.OverlapSphere(transform.position, interactionRange, interactionMask);                      
 
         for(int i = 0; i < colliders.Length; i++)
         {
-            // ¿ÀºêÁ§Æ®ÀÇ °Å¸® º¸Á¤ (¿ÀºêÁ§Æ® Áß½ÉÀÌ ¹üÀ§ ¾È¿¡ µé¾î¿ÔÀ» ¶§)
+            // ì˜¤ë¸Œì íŠ¸ì˜ ê±°ë¦¬ ë³´ì • (ì˜¤ë¸Œì íŠ¸ ì¤‘ì‹¬ì´ ë²”ìœ„ ì•ˆì— ë“¤ì–´ì™”ì„ ë•Œ)
             if (GetObjectDistance(colliders[i].transform) <= interactionRange)
                 rangeObjects.Add(colliders[i].gameObject.transform);
         }
@@ -191,14 +191,14 @@ public class PlayerInteraction : MonoBehaviour
         return rangeObjects;
     }
 
-    // °¡Àå °¡±î¿î »óÈ£ÀÛ¿ë Å¸°Ù ¿ÀºêÁ§Æ® ±¸ÇÏ±â
+    // ê°€ì¥ ê°€ê¹Œìš´ ìƒí˜¸ì‘ìš© íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ êµ¬í•˜ê¸°
     GameObject GetRangeObjectNear()
     {
         List<Transform> rangeObjects = GetRangeObjects();
 
         GameObject rangeObjectNear = null;
 
-        // ÃÖ¼Ú°ª ±¸ÇÏ±â ¾Ë°í¸®Áò
+        // ìµœì†Ÿê°’ êµ¬í•˜ê¸° ì•Œê³ ë¦¬ì¦˜
         if (rangeObjects.Count > 0)
         {
             int nearIndex = 0;
@@ -217,91 +217,91 @@ public class PlayerInteraction : MonoBehaviour
         return rangeObjectNear;
     }
 
-    // ¸¶¿ì½º·Î Å¬¸¯ÇÑ ¿ÀºêÁ§Æ®°¡ »óÈ£ÀÛ¿ë Å¸°Ù ¿ÀºêÁ§Æ®ÀÎÁö È®ÀÎ
+    // ë§ˆìš°ìŠ¤ë¡œ í´ë¦­í•œ ì˜¤ë¸Œì íŠ¸ê°€ ìƒí˜¸ì‘ìš© íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ì¸ì§€ í™•ì¸
     bool CheckMouseClickTargetObject()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        // ¸¶¿ì½º·Î Å¬¸¯µÈ ¿ÀºêÁ§Æ®°¡ »óÈ£ÀÛ¿ë ÇÒ ¼ö ÀÖ´Â ¿ÀºêÁ§Æ®ÀÎ °æ¿ì
+        // ë§ˆìš°ìŠ¤ë¡œ í´ë¦­ëœ ì˜¤ë¸Œì íŠ¸ê°€ ìƒí˜¸ì‘ìš© í•  ìˆ˜ ìˆëŠ” ì˜¤ë¸Œì íŠ¸ì¸ ê²½ìš°
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, interactionMask))                                                         
         {
             GameObject clickObject = hit.transform.gameObject;
 
-            // Å¸°Ù ¿ÀºêÁ§Æ®¿Í ÀÏÄ¡ÇÏ´ÂÁö È®ÀÎ
+            // íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ì™€ ì¼ì¹˜í•˜ëŠ”ì§€ í™•ì¸
             if (clickObject == targetObejct) return true;
         }
 
         return false;
     }
 
-    // »óÈ£ÀÛ¿ë UI¿Í »óÈ£ÀÛ¿ë Å¸°Ù ¸¶Å© ¶ç¿ì±â
+    // ìƒí˜¸ì‘ìš© UIì™€ ìƒí˜¸ì‘ìš© íƒ€ê²Ÿ ë§ˆí¬ ë„ìš°ê¸°
     void SetInteractionUIAndTargetMark()
     {
-        // »óÈ£ÀÛ¿ë UI¿Í »óÈ£ÀÛ¿ë Å¸°Ù ¸¶Å© È°¼ºÈ­
+        // ìƒí˜¸ì‘ìš© UIì™€ ìƒí˜¸ì‘ìš© íƒ€ê²Ÿ ë§ˆí¬ í™œì„±í™”
         SetInteractionUIAndTargetMarkActive(true);
 
-        SetTargetMark();    // Å¸°Ù ¸¶Å© ¼¼ÆÃ
-        SetInteractionUI(); // »óÈ£ÀÛ¿ë UI ¼¼ÆÃ
+        SetTargetMark();    // íƒ€ê²Ÿ ë§ˆí¬ ì„¸íŒ…
+        SetInteractionUI(); // ìƒí˜¸ì‘ìš© UI ì„¸íŒ…
     }
 
-    // »óÈ£ÀÛ¿ë UI ¼¼ÆÃ
+    // ìƒí˜¸ì‘ìš© UI ì„¸íŒ…
     void SetInteractionUI()
     {
-        // ·¹ÀÌ¾î¿¡ µû¸¥ »óÈ£ÀÛ¿ë UI ¼¼ÆÃ
+        // ë ˆì´ì–´ì— ë”°ë¥¸ ìƒí˜¸ì‘ìš© UI ì„¸íŒ…
         if (targetObejct.layer == LayerMask.NameToLayer("NPC"))
         {
-            // Å¸°Ù ¿ÀºêÁ§Æ®ÀÇ ·¹ÀÌ¾î°¡ NPCÀÎ °æ¿ì
-            // NPC¿Í »óÈ£ÀÛ¿ëÇÒ ¶§·Î ¼¼ÆÃ
+            // íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ì˜ ë ˆì´ì–´ê°€ NPCì¸ ê²½ìš°
+            // NPCì™€ ìƒí˜¸ì‘ìš©í•  ë•Œë¡œ ì„¸íŒ…
             interactionUI.SetInteractionIconUI(interactionNpc, interactionNpcText, interactionKey);
         }
         else if (targetObejct.layer == LayerMask.NameToLayer("InteractionObject"))
         {
-            // Å¸°Ù ¿ÀºêÁ§Æ®ÀÇ ·¹ÀÌ¾î°¡ »óÈ£ÀÛ¿ë ¿ÀºêÁ§Æ®ÀÎ °æ¿ì
-            // ¿ÀºêÁ§Æ®¿Í »óÈ£ÀÛ¿ëÇÒ ¶§·Î ¼¼ÆÃ
+            // íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ì˜ ë ˆì´ì–´ê°€ ìƒí˜¸ì‘ìš© ì˜¤ë¸Œì íŠ¸ì¸ ê²½ìš°
+            // ì˜¤ë¸Œì íŠ¸ì™€ ìƒí˜¸ì‘ìš©í•  ë•Œë¡œ ì„¸íŒ…
             interactionUI.SetInteractionIconUI(interactionObject, interactionObjectText, interactionKey);
         }
         else if (targetObejct.layer == LayerMask.NameToLayer("Portal"))
         {
-            // Å¸°Ù ¿ÀºêÁ§Æ®ÀÇ ·¹ÀÌ¾î°¡ Æ÷Å»ÀÎ °æ¿ì
-            // Æ÷Å»°ú »óÈ£ÀÛ¿ëÇÒ ¶§·Î ¼¼ÆÃ
-            string temp = string.Format("\'{0}\'(À¸)·Î ÀÌµ¿", targetObejct.GetComponent<Portal>().GetDestination());
+            // íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ì˜ ë ˆì´ì–´ê°€ í¬íƒˆì¸ ê²½ìš°
+            // í¬íƒˆê³¼ ìƒí˜¸ì‘ìš©í•  ë•Œë¡œ ì„¸íŒ…
+            string temp = string.Format("\'{0}\'(ìœ¼)ë¡œ ì´ë™", targetObejct.GetComponent<Portal>().GetDestination());
             interactionUI.SetInteractionIconUI(interactionPortal, temp, interactionKey);
 
-            interactionTargetMark.SetActive(false); // Å¸°Ù ¸¶Å© ºñÈ°¼ºÈ­
+            interactionTargetMark.SetActive(false); // íƒ€ê²Ÿ ë§ˆí¬ ë¹„í™œì„±í™”
         }
 
-        // »óÈ£ÀÛ¿ë UI¸¦ ÇÃ·¹ÀÌ¾î ¸Ó¸® À§·Î ÀÌµ¿
+        // ìƒí˜¸ì‘ìš© UIë¥¼ í”Œë ˆì´ì–´ ë¨¸ë¦¬ ìœ„ë¡œ ì´ë™
         interactionUIObject.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 2.0f, 0));
     }
 
-    // Å¸°Ù ¸¶Å© ¼¼ÆÃ
+    // íƒ€ê²Ÿ ë§ˆí¬ ì„¸íŒ…
     void SetTargetMark()
     {
-        // ÇØ´ç ¿ÀºêÁ§Æ®ÀÇ ³Êºñ (x, zÃà Áß ±ä ±æÀÌ) ±¸ÇÏ±â
+        // í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ì˜ ë„ˆë¹„ (x, zì¶• ì¤‘ ê¸´ ê¸¸ì´) êµ¬í•˜ê¸°
         BoxCollider boxCollider = targetObejct.gameObject.GetComponent<BoxCollider>();
         float obejctWidth = Mathf.Max(boxCollider.bounds.size.x, boxCollider.bounds.size.z);
 
-        // Å¸°Ù ¿ÀºêÁ§Æ®ÀÇ ÀÚ½Ä °´Ã¼·Î ¼³Á¤
+        // íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ì˜ ìì‹ ê°ì²´ë¡œ ì„¤ì •
         interactionTargetMark.transform.parent = targetObejct.transform;
 
-        // Å¸°Ù ¸¶Å© À§Ä¡¸¦ Å¸°Ù ¿ÀºêÁ§Æ® ¹ß ¹ØÀ¸·Î º¯°æ
+        // íƒ€ê²Ÿ ë§ˆí¬ ìœ„ì¹˜ë¥¼ íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ ë°œ ë°‘ìœ¼ë¡œ ë³€ê²½
         Vector3 markPosition = new Vector3(targetObejct.transform.position.x, 0.25f, targetObejct.transform.position.z);
         interactionTargetMark.transform.position = markPosition;
 
-        // Å¸°Ù ¸¶Å© Å©±â º¯°æ (ºÎ¸ğ °´Ã¼·Î ÀÎÇØ ´Ã¾î³­ ¸¸Å­ ³ª´²ÁÜÀ¸·Î¼­ ºñÀ² ¸ÂÃã)
+        // íƒ€ê²Ÿ ë§ˆí¬ í¬ê¸° ë³€ê²½ (ë¶€ëª¨ ê°ì²´ë¡œ ì¸í•´ ëŠ˜ì–´ë‚œ ë§Œí¼ ë‚˜ëˆ ì¤Œìœ¼ë¡œì„œ ë¹„ìœ¨ ë§ì¶¤)
         Vector3 targetLocalScale = targetObejct.transform.localScale;
         interactionTargetMark.transform.localScale = new Vector3(obejctWidth / targetLocalScale.x, 1, obejctWidth / targetLocalScale.z);
     }
 
-    // »óÈ£ÀÛ¿ë UI¿Í »óÈ£ÀÛ¿ë Å¸°Ù ¸¶Å© È°¼ºÈ­ ¼¼ÆÃ
+    // ìƒí˜¸ì‘ìš© UIì™€ ìƒí˜¸ì‘ìš© íƒ€ê²Ÿ ë§ˆí¬ í™œì„±í™” ì„¸íŒ…
     void SetInteractionUIAndTargetMarkActive(bool active)
     {
         interactionUIObject.SetActive(active);
         interactionTargetMark.SetActive(active);
     }
 
-    // ÇÃ·¹ÀÌ¾î¿Í ¿ÀºêÁ§Æ® »çÀÌÀÇ °Å¸® °è»ê
+    // í”Œë ˆì´ì–´ì™€ ì˜¤ë¸Œì íŠ¸ ì‚¬ì´ì˜ ê±°ë¦¬ ê³„ì‚°
     private float GetObjectDistance(Transform objectTransform)
     {
         Vector3 player = transform.position;
@@ -313,7 +313,7 @@ public class PlayerInteraction : MonoBehaviour
         return Vector3.Distance(player, obj);                                                                                           
     }
 
-    // »óÈ£ÀÛ¿ë ¹üÀ§ ±âÁî¸ğ ±×¸®±â
+    // ìƒí˜¸ì‘ìš© ë²”ìœ„ ê¸°ì¦ˆëª¨ ê·¸ë¦¬ê¸°
     private void OnDrawGizmos()
     {
         Handles.color = Color.red;
