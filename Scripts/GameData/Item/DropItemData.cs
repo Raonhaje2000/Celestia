@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DropItem", menuName = "GameData/Item/DropItem")]                                             
 public class DropItemData : InventoryItemData
 {
-    [SerializeField] float dropProbability = 100; // µå¶ø È®·ü
+    [SerializeField] float dropProbability = 100; // ë“œë í™•ë¥ 
 
     public DropItemData()
     {
